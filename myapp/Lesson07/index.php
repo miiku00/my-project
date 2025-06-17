@@ -13,26 +13,32 @@ $emp = ['中田' => ['age' => '23','pref' => '東京'],
         '佐藤' => ['age' => '30','pref' => '大阪'],
         '小林' => ['age' => '22','pref' => '福岡']
         ];
-
-foreach ($emp as $name => $info) {      #キー(名前)を$name、値(年齢、出身地)を$infoに入れる
+        
+#キー(名前)を$name、値(年齢、出身地)を$infoに入れる
+foreach ($emp as $name => $info) {
+    #表示
     echo "name:{$name}\n";
     echo "age:{$info['age']}\n";
     echo "pref:{$info['pref']}\n";
     echo "\n";
 }
 
+
+
 #応用1
 $number = [];   #空の配列
 for ($i = 1; $i <= 40; $i++) {
     #3で割ってあまりが0または、3が付く数字
-    if ($i % 3 == 0 || preg_match('/3/',$i))    #参考：https://techplay.jp/column/531
+    if ($i % 3 == 0 || preg_match('/3/',$i))
     $number[] = $i;     #配列に格納
 }
- #foreach文で数字のみ取り出す
+
+#foreach文で数字のみ取り出す
 foreach ($number as $number3) {
     echo "$number3 ";
 }
 echo "\n";
+
 
 #応用2
 $emp = ['中田' => ['age' => '23','pref' => '東京'],
