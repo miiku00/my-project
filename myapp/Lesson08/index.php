@@ -2,15 +2,19 @@
 #数値を３つ引数として渡したら、その数値の平均値を返す関数
  #引数が３つでない場合はエラーメッセージを返す
  #引数が数値でない場合もエラーメッセージを返す
-function average(...$nums) {   #可変長引数...
+function average($num1 = null, $num2 = null, $num3 = null) {   #デフォルト値null
+    $nums = [$num1, $num2, $num3];
+    
+    if (func_num_args() !== 3) {   #引数を数えて３つ以外
+        return "エラー：引数は３つ必要です \n";
+    }
+    
     foreach ($nums as $num) {   #繰り返し処理で引数それぞれを調べる
         if (!is_numeric($num)) {    #数値以外がある場合
             return "エラー：引数は数値である必要があります \n";
         }
     }
-    if (count($nums) !== 3) {   #引数を数えて３つ以外
-        return "エラー：引数は３つ必要です \n";
-    }
+    
     return array_sum($nums) / 3 . "\n";    #引数の合計値 array_sum
     }
 
