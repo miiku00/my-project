@@ -1,0 +1,41 @@
+version: '3.7'
+services:
+  aiseshop:
+    build:
+      context: ./aiseshop
+      dockerfile: ../docker/Dockerfile
+    volumes:
+      - ./aiseshop:/var/www/html
+    ports:
+      - 8000:80
+    depends_on:
+      - db_aiseshop
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: db_aiseshop
+      DB_PORT: 3306
+
+  db_aiseshop:
+    image: mysql:8.0.32
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: aiseshop
+      MYSQL_USER: aiseshop_user
+      MYSQL_PASSWORD: secret
+    ports:
+      - 3306:3306
+    volumes:
+      - db_data_aiseshop:/var/lib/mysql
+
+  phpmyadmin_aiseshop:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    depends_on:
+      - db_aiseshop
+    environment:
+      PMA_HOST: db_aiseshop # これがMySQLサーバのホスト名と一致する必要があります。
+
+volumes:
+  db_data_aiseshop:
