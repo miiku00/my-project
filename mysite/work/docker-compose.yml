@@ -28,7 +28,7 @@ services:
       - MYSQL_PASSWORD=root
       - MYSQL_DATABASE=sample
     ports:
-      - "3306:3306"
+      - "3308:3308"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
