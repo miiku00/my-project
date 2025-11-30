@@ -10,8 +10,17 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
-                </div>
+                </div>               
             </div>
-        </div>
+                <a href="{{ route('shops.my') }}"
+                    class="inline-block bg-green-500 text-white px-4 py-2 rounded">
+                        マイショップ一覧
+                </a>
+
+                <a href="{{ route('shops.index') }}"
+                    class="inline-block bg-blue-500 text-white px-4 py-2 rounded">
+                        ショップ一覧へ
+                </a>
+        </div>        
     </div>
 </x-app-layout>
