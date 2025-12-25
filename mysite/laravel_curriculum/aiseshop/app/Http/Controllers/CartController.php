@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order;
+use App\Models\OrderItem;
+
 
 class CartController extends Controller
 {
@@ -98,6 +101,10 @@ class CartController extends Controller
                 'quantity' => $item['quantity'],
                 'price' => $item['price'],
             ]);
+
+            $product = Product::find($item['id']);
+            $product->stock -= $item['quantity'];
+            $product->save();
         }
 
         session()->forget('cart');

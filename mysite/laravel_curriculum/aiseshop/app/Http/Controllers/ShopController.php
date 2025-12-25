@@ -24,6 +24,9 @@ class ShopController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'owner') {
+            abort(403, 'ショップの作成権限がありません。');
+        }
         //
         return view('shops.create');
     }
@@ -34,6 +37,10 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         //
+        if (auth()->user()->role !== 'owner') {
+            abort(403, 'ショップの作成権限がありません。');
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required',
